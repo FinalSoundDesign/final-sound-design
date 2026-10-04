@@ -1,6 +1,6 @@
 /* Custom properties */
 :root {
-  /* --color-bg はロゴ画像（image/ロゴ画像1.png）の背景の黒 #000000 に合わせている。
+  /* --color-bg はロゴ画像（image/logo-square.png）の背景の黒 #000000 に合わせている。
      ロゴが載るヘッダー・フッターで浮かないようにするため純黒に統一。 */
   --color-bg:          #000000;
   --color-bg-2:        #0d0d0d;
