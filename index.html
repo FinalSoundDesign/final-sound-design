@@ -35,6 +35,9 @@
       "https://finalsounddesign.com/image/logo-square.png"
     ],
     "logo": "https://finalsounddesign.com/image/logo-square.png",
+    "sameAs": [
+      "https://x.com/vocky2931"
+    ],
     "telephone": "090-2679-6442",
     "address": {
       "@type": "PostalAddress",
@@ -64,6 +67,7 @@
       "ギター・ベースのカスタマイズ",
       "セットアップ",
       "楽器購入相談",
+      "スタジオレンタル",
       "中古楽器委託販売",
       "防音室委託販売"
     ],
@@ -93,7 +97,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=cd29c4c4">
+  <link rel="stylesheet" href="style.css?v=ea1fb716">
 </head>
 <body>
 
@@ -222,7 +226,7 @@
       <div class="container">
         <div class="section-header">
           <span class="section-label">SERVICE</span>
-          <h2 id="service-heading" class="section-title">ギター・ベースの<br class="mobile-break">リペア＆サービス紹介</h2>
+          <h2 id="service-heading" class="section-title">ギター・ベースの<br>リペア＆サービス紹介</h2>
           <p class="section-desc">Final Sound Designでは<br class="mobile-break">様々な【音】に関わる内容に対し、<br class="mobile-break">ベストな提案・サービスを<br class="mobile-break">行う事業を行っております。</p>
         </div>
 
@@ -233,14 +237,17 @@
           <button type="button" class="service-tab" role="tab" id="tab-purchase" aria-selected="false" aria-controls="panel-purchase" tabindex="-1">
             <span class="service-tab-num" aria-hidden="true">02</span><span class="service-tab-label">楽器購入相談事業</span>
           </button>
+          <button type="button" class="service-tab" role="tab" id="tab-studio" aria-selected="false" aria-controls="panel-studio" tabindex="-1">
+            <span class="service-tab-num" aria-hidden="true">03</span><span class="service-tab-label">スタジオレンタル</span>
+          </button>
           <button type="button" class="service-tab" role="tab" id="tab-consignment" aria-selected="false" aria-controls="panel-consignment" tabindex="-1">
-            <span class="service-tab-num" aria-hidden="true">03</span><span class="service-tab-label">中古楽器委託販売事業</span>
+            <span class="service-tab-num" aria-hidden="true">04</span><span class="service-tab-label">中古楽器委託販売事業</span>
           </button>
           <button type="button" class="service-tab" role="tab" id="tab-soundproof" aria-selected="false" aria-controls="panel-soundproof" tabindex="-1">
-            <span class="service-tab-num" aria-hidden="true">04</span><span class="service-tab-label">防音室委託販売事業</span>
+            <span class="service-tab-num" aria-hidden="true">05</span><span class="service-tab-label">防音室委託販売事業</span>
           </button>
           <button type="button" class="service-tab" role="tab" id="tab-events" aria-selected="false" aria-controls="panel-events" tabindex="-1">
-            <span class="service-tab-num" aria-hidden="true">05</span><span class="service-tab-label">イベント事業</span>
+            <span class="service-tab-num" aria-hidden="true">06</span><span class="service-tab-label">イベント事業</span>
           </button>
         </div>
 
@@ -337,10 +344,132 @@
 
         </div>
 
+        <div class="service-panel" id="panel-studio" role="tabpanel" aria-labelledby="tab-studio" tabindex="0" hidden>
+        <div class="service-block" id="studio">
+          <div class="service-block-header">
+            <span class="service-number" aria-hidden="true">03</span>
+            <div>
+              <h3 class="service-block-title">スタジオレンタル</h3>
+              <p class="service-block-sub">Studio Rental</p>
+            </div>
+          </div>
+          <div class="service-block-body">
+            <p>ハーラウフラオアロハラニ・<br class="mobile-break">Final Sound Designが<br class="mobile-break">運営しているレンタルスタジオです。<br>場所は工房と同じ、<br class="mobile-break">高円寺駅から徒歩15分<br class="mobile-break">（東京都中野区大和町）です。</p>
+            <p>フラダンスの個人練習・団体練習や、<br>ほかのダンス練習などでの<br class="mobile-break">ご利用が可能です。</p>
+            <p>直近では<br class="mobile-break">声優業をされている方々による<br>発声練習やセミナー・<br class="mobile-break">レコーディングなど、<br>幅広い分野で<br class="mobile-break">ご利用いただいております。</p>
+          </div>
+
+          <div class="studio-price">
+            <h4 class="studio-heading" id="studio-price-heading">料金<span class="studio-heading-note">ダンススタジオ／<br class="mobile-break">防音・レコーディングスタジオ共通</span></h4>
+            <table class="studio-price-table" aria-labelledby="studio-price-heading">
+              <thead>
+                <tr>
+                  <th scope="col">ご利用区分</th>
+                  <th scope="col">料金</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">個人利用</th>
+                  <td><span class="studio-price-amount">1,000</span><span class="studio-price-yen">円</span><span class="studio-price-unit">／1時間</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">個人利用（2名）</th>
+                  <td><span class="studio-price-amount">2,000</span><span class="studio-price-yen">円</span><span class="studio-price-unit">／1時間</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">団体利用</th>
+                  <td><span class="studio-price-amount">3,500</span><span class="studio-price-yen">円</span><span class="studio-price-unit">／1時間</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">商業利用</th>
+                  <td><span class="studio-price-ask">要相談</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="studio-rooms">
+            <div class="studio-room">
+              <h4 class="studio-room-title">ダンススタジオ</h4>
+              <dl class="studio-room-hours">
+                <dt>利用可能時間</dt>
+                <dd>10時〜22時</dd>
+              </dl>
+              <h5 class="studio-room-label">スタジオ常設品</h5>
+              <ul class="studio-room-items">
+                <li>モニターテレビ</li>
+                <li>長机×2</li>
+                <li>椅子×10</li>
+                <li>譜面台</li>
+                <li>Bluetooth 受信機能付きスピーカー</li>
+              </ul>
+            </div>
+
+            <div class="studio-room">
+              <h4 class="studio-room-title">防音・レコーディングスタジオ</h4>
+              <h5 class="studio-room-label">スタジオ常設品</h5>
+              <ul class="studio-room-items">
+                <li>モニターテレビ</li>
+                <li>作業用机</li>
+                <li>椅子</li>
+                <li>譜面台</li>
+              </ul>
+              <h5 class="studio-room-label" id="studio-gear-label">レコーディング機材</h5>
+              <table class="studio-gear" aria-labelledby="studio-gear-label">
+                <tbody>
+                  <tr>
+                    <th scope="row">オーディオ<br class="mobile-break">インターフェイス</th>
+                    <td>SSL 2 + mk2</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">コンデンサー<br class="mobile-break">マイク</th>
+                    <td>Neumann TLM&nbsp;103 クローン</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">ポップガード</th>
+                    <td>STEDMAN PROSCREEN PS101</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">リフレクション<br class="mobile-break">フィルター</th>
+                    <td>sE Electronics RF-X Reflexion Filter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="studio-note">※ それ以外の内容については<br class="mobile-break">原則ご自身で用意をお願い致します。</p>
+
+          <div class="studio-contact">
+            <h4 class="studio-heading">ご予約・お問い合わせ</h4>
+            <div class="studio-reserve">
+              <!-- スタジオ専用の予約ページに飛ばす -->
+              <a href="studio-reserve.html" class="btn btn-primary" target="_blank" rel="noopener noreferrer">予約ページへ</a>
+            </div>
+            <p class="studio-contact-lead">不明点や事前確認などをされたい方は<br>お気軽に下記の連絡先より<br class="mobile-break">ご連絡くださいませ。</p>
+            <dl class="studio-contact-list">
+              <div class="studio-contact-row">
+                <dt class="studio-contact-term">電話番号</dt>
+                <dd class="studio-contact-desc"><a href="tel:09026796442" class="info-link">090-2679-6442</a></dd>
+              </div>
+              <div class="studio-contact-row">
+                <dt class="studio-contact-term">メールアドレス</dt>
+                <dd class="studio-contact-desc"><a href="mailto:final.sound.design331@gmail.com" class="info-link">final.sound.design331<wbr>@gmail.com</a></dd>
+              </div>
+              <div class="studio-contact-row">
+                <dt class="studio-contact-term">代表</dt>
+                <dd class="studio-contact-desc">新保 航（シンボ ワタル）<span class="studio-contact-sub">Final Sound Design 代表 /<br class="mobile-break"> ハーラウフラオアロハラニ Web管理担当</span></dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        </div>
+
         <div class="service-panel" id="panel-consignment" role="tabpanel" aria-labelledby="tab-consignment" tabindex="0" hidden>
         <div class="service-block" id="consignment">
           <div class="service-block-header">
-            <span class="service-number" aria-hidden="true">03</span>
+            <span class="service-number" aria-hidden="true">04</span>
             <div>
               <h3 class="service-block-title">中古楽器委託販売事業</h3>
               <p class="service-block-sub">Used Instrument Consignment</p>
@@ -364,7 +493,7 @@
         <div class="service-panel" id="panel-soundproof" role="tabpanel" aria-labelledby="tab-soundproof" tabindex="0" hidden>
         <div class="service-block" id="soundproof">
           <div class="service-block-header">
-            <span class="service-number" aria-hidden="true">04</span>
+            <span class="service-number" aria-hidden="true">05</span>
             <div>
               <h3 class="service-block-title">防音室委託販売事業</h3>
               <p class="service-block-sub">Soundproof Room Consignment</p>
@@ -383,7 +512,7 @@
         <div class="service-panel" id="panel-events" role="tabpanel" aria-labelledby="tab-events" tabindex="0" hidden>
         <div class="service-block" id="events">
           <div class="service-block-header">
-            <span class="service-number" aria-hidden="true">05</span>
+            <span class="service-number" aria-hidden="true">06</span>
             <div>
               <h3 class="service-block-title">イベント事業</h3>
               <p class="service-block-sub">Events</p>
@@ -415,7 +544,8 @@
       <div class="container">
         <div class="section-header">
           <span class="section-label">FLOW</span>
-          <h2 id="flow-heading" class="section-title">ギター・ベースの<br class="mobile-break">リペアご依頼の流れ</h2>
+          <h2 id="flow-heading" class="section-title">ご依頼の流れ</h2>
+          <p class="section-desc">リペアのご依頼から<br class="mobile-break">お渡しまでの流れです。</p>
         </div>
         <ol class="flow-list" aria-label="依頼ステップ">
           <li class="flow-item">
@@ -548,6 +678,24 @@
             <span id="message-error" class="form-error" role="alert" aria-live="polite"></span>
           </div>
 
+          <div class="form-group">
+            <label for="referral" class="form-label">当工房を知ったきっかけ <span class="optional">任意</span></label>
+            <select
+              id="referral"
+              name="referral"
+              class="form-input form-select"
+            >
+              <option value="">選択してください</option>
+              <option value="インターネット検索">インターネット検索</option>
+              <option value="Googleマップ">Googleマップ</option>
+              <option value="SNS">SNS</option>
+              <option value="ご紹介（知人・友人など）">ご紹介（知人・友人など）</option>
+              <option value="その他">その他</option>
+            </select>
+            <!-- 任意なのでエラーは出さない。下の余白を他の項目と揃えるために枠だけ置いてる -->
+            <span class="form-error" aria-hidden="true"></span>
+          </div>
+
           <div class="form-group form-group--checkbox">
             <label class="checkbox-label">
               <input type="checkbox" id="privacy" name="privacy" class="checkbox-input" required aria-required="true" aria-describedby="privacy-error">
@@ -610,9 +758,35 @@
           </div>
           <div class="info-row">
             <dt class="info-term">古物商許可</dt>
-            <dd class="info-desc">東京都公安委員会 第304402618369号 新保 航（交付：令和8年6月1日）</dd>
+            <dd class="info-desc">東京都公安委員会 <br class="mobile-break">第304402618369号 <br class="mobile-break">新保 航<br class="mobile-break">（交付：令和8年6月1日）</dd>
           </div>
         </dl>
+      </div>
+    </section>
+
+    <!-- SNSは今後増える予定。li を足せば並ぶ。URLを変えたら head の JSON-LD の sameAs も直す -->
+    <section class="sns section" id="sns" aria-labelledby="sns-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">SNS</span>
+          <h2 id="sns-heading" class="section-title">工房の<br class="mobile-break">公式SNSアカウント</h2>
+          <p class="section-desc">実際のリペアは<br class="mobile-break">公式SNSからもご覧いただけます。</p>
+        </div>
+        <ul class="sns-list">
+          <li class="sns-item">
+            <a href="https://x.com/vocky2931" class="sns-link" target="_blank" rel="noopener noreferrer" aria-label="X（旧Twitter）（Final Sound Design のアカウント）を新しいタブで開く">
+              <span class="sns-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 1200 1227" fill="currentColor" aria-hidden="true" focusable="false"><path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.163 519.284ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.828Z"/></svg>
+              </span>
+              <span class="sns-text">
+                <span class="sns-name">X（旧Twitter）</span>
+              </span>
+              <span class="sns-arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false"><path d="M4 10L10 4M5 4h5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg>
+              </span>
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -637,6 +811,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=fa7314e6"></script>
+  <script src="script.js?v=4ee20a94"></script>
 </body>
 </html>

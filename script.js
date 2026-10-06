@@ -94,8 +94,13 @@ function initScrollReveal() {
     '.service-item',
     '.license-box',
     '.event-box',
+    '.studio-price',
+    '.studio-room',
+    '.studio-note',
+    '.studio-contact',
     '.flow-item',
     '.info-row',
+    '.sns-item',
     '.reserve-form'
   ].join(', '));
 
