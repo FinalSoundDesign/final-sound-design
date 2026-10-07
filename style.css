@@ -309,7 +309,7 @@ button {
   transform: translateY(-1px);
 }
 
-/* Hamburger */
+/* ハンバーガー */
 .nav-toggle {
   display: flex;
   flex-direction: column;
@@ -336,50 +336,124 @@ button {
 
 .nav-toggle[aria-expanded="true"] .hamburger-bar:nth-child(2) {
   opacity: 0;
+  /* iOSだと消えたはずの真ん中の線の両端が×の左右に点で残るので、幅も0に縮める */
+  transform: scaleX(0);
 }
 
 .nav-toggle[aria-expanded="true"] .hamburger-bar:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Mobile nav open */
-.global-nav.is-open {
-  display: block;
-  position: fixed;
-  top: var(--header-h);
-  inset-inline: 0;
-  background: rgba(0,0,0,0.98);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--color-border);
-  padding: 1.5rem var(--container-pad) 2rem;
-  animation: slideDown 0.25s ease;
+/* スマホのメニュー（開いたとき）
+   ヘッダーの下を全部覆って、後ろのページをぼかして暗くする。
+   is-closing は閉じるフェードの間だけ付く（JS側で外す） */
+@media (max-width: 767px) {
+  .global-nav.is-open,
+  .global-nav.is-closing {
+    display: block;
+    position: fixed;
+    top: var(--header-h);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    /* ぼかしはここだけ。ヘッダーに付けるとiPadで本文が上に漏れるので付けない */
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .global-nav.is-open {
+    animation: navFadeIn 0.28s ease both;
+  }
+
+  .global-nav.is-closing {
+    animation: navFadeOut 0.22s ease both;
+    pointer-events: none;
+  }
+
+  .global-nav .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 2.5rem var(--container-pad) calc(2.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .global-nav.is-open .nav-list > li {
+    animation: navItemIn 0.4s ease both;
+  }
+
+  .global-nav.is-open .nav-list > li:nth-child(1) { animation-delay: 0.06s; }
+  .global-nav.is-open .nav-list > li:nth-child(2) { animation-delay: 0.1s; }
+  .global-nav.is-open .nav-list > li:nth-child(3) { animation-delay: 0.14s; }
+  .global-nav.is-open .nav-list > li:nth-child(4) { animation-delay: 0.18s; }
+
+  /* 4つとも同じ字面・同じ高さにそろえる。線は引かない */
+  .global-nav .nav-link,
+  .global-nav .nav-link--cta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3.25rem;
+    padding: 0.25rem 0;
+    font-size: clamp(1.6rem, 8vw, 2.1rem);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+    background: none;
+    transform: none;
+    opacity: 1;
+  }
+
+  .global-nav .nav-link::after {
+    display: none;
+  }
+
+  .global-nav .nav-link:hover,
+  .global-nav .nav-link:focus-visible {
+    color: var(--color-accent);
+  }
+
+  /* RESERVATION は塗りボタンをやめて文字色だけゴールドに。
+     PC用の金ボタンに color:#000 !important が付いているので、こちらも !important で上書きする */
+  .global-nav .nav-link--cta {
+    color: var(--color-accent) !important;
+  }
+
+  .global-nav .nav-link--cta:hover,
+  .global-nav .nav-link--cta:focus-visible {
+    color: #d8bd86 !important;
+  }
 }
 
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
+/* ぼかし非対応のブラウザでは、後ろが読めてしまわないよう濃いめのベタにする */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .global-nav.is-open,
+  .global-nav.is-closing {
+    background: rgba(0, 0, 0, 0.92);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .global-nav.is-open,
+  .global-nav.is-open .nav-list > li {
+    animation: none;
+  }
+}
+
+@keyframes navFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes navFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes navItemIn {
+  from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-.global-nav.is-open .nav-list {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0;
-}
-
-.global-nav.is-open .nav-link {
-  display: block;
-  padding-block: 0.9rem;
-  font-size: 1rem;
-  width: 100%;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.global-nav.is-open .nav-link--cta {
-  margin-top: 1rem;
-  display: inline-flex;
-  width: auto;
-  border-bottom: none;
 }
 
 /* Hero */
@@ -1267,6 +1341,18 @@ button {
 /* スマホ幅だけで効かせる追い改行。PCでは消しておく */
 br.mobile-break {
   display: none;
+}
+
+/* 360px未満の細い画面だけ足す改行。ご依頼の流れの本文は1行15〜16字あって、
+   この幅を切ると「を」「も」が1字だけ次の行に落ちる */
+br.narrow-break {
+  display: none;
+}
+
+@media (max-width: 359px) {
+  br.narrow-break {
+    display: inline;
+  }
 }
 
 /* 2列のままだと列が細って本文が折り返す帯。折り返す分だけ背を足す(1列に切り替わる768pxまで) */
