@@ -17,6 +17,10 @@
   --color-accent:      #c8a96e;
   --color-accent-dark: #a8893e;
   --color-accent-glow: rgba(200, 169, 110, 0.15);
+  /* 番号用の金。muted はサービスの大きい番号（見出しの白より前に出ない暗さ）、
+     light は小さい箱の中の番号（地のグレーに負けない明るさ） */
+  --color-accent-muted: #7a6743;
+  --color-accent-light: #d6bc88;
 
   --color-white:       #ffffff;
   --color-error:       #e05555;
@@ -726,7 +730,10 @@ button {
   font-family: var(--font-display);
   font-size: 3rem;
   font-weight: 700;
-  color: var(--color-border-2);
+  /* #333だと黒地に沈んで読めなかった。数字もCormorant既定の高さ不揃いな形だと
+     「3」が下に垂れて「O1」「O3」みたいに見えるので、高さの揃った数字にする */
+  color: var(--color-accent-muted);
+  font-variant-numeric: lining-nums;
   line-height: 1;
   letter-spacing: -0.03em;
   flex-shrink: 0;
@@ -778,12 +785,13 @@ button {
 }
 
 .service-item-inner {
-  padding: 1.5rem;
+  /* 文字から枠までの空きが広すぎて箱が大きく見えたので、上下左右とも少し詰めている */
+  padding: 1rem 1.125rem;
   position: relative;
-  /* 列が広い時はどの箱も3行に収まる。フレット擦り合わせが3行になる高さに全箱を揃えて間延びを防ぐ。
+  /* 列が広い時はどの箱も本文3行に収まる。3行の箱がちょうど入る高さに全箱を揃えて間延びを防ぐ。
      列が細って折り返しが増える帯だけ、下のメディアクエリで足りない分を足す */
   flex: 1;
-  min-height: 158px;
+  min-height: 142px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -868,6 +876,7 @@ button {
   font-family: var(--font-display);
   font-size: 0.85rem;
   font-weight: 600;
+  font-variant-numeric: lining-nums;
   letter-spacing: 0.08em;
   color: var(--color-text-faint);
   transition: color var(--transition);
@@ -939,11 +948,13 @@ button {
 }
 
 .flow-list {
+  /* 接続線の長さにも使うので変数に */
+  --flow-gap: 2.5rem;
   display: grid;
   /* 項目間の縦の余白。以前はpadding-bottomで作っていたが、ボックスを本文ブロックの
      縦中央に合わせる（align-items:center）と、接続線の基準を「ボックス中央」に取りたい。
      padding分だけ50%がズレるのを避けるため、余白はgridのgapで持たせる。 */
-  gap: 2.5rem;
+  gap: var(--flow-gap);
   max-width: 700px;
   margin-inline: auto;
   counter-reset: flow-counter;
@@ -957,20 +968,29 @@ button {
   position: relative;
 }
 
-/* 接続線は「このボックスの中央」から「次のボックスの中央」まで引く。
-   ボックスは不透明(--color-surface)で線より前面(z-index)にあるので、
-   線のうちボックスと重なる部分は隠れ、項目間のすき間だけに線が見える。
-   top:50% がボックス中央（gapで余白を持たせているので item高さ=本文高さ）。
-   height は 100%(1項目分)+gap で、ちょうど次のボックス中央に届く。 */
-.flow-item:not(:last-child)::after {
+/* 接続線は「このボックスの中央」から「次のボックスの中央」まで。
+   ボックスは不透明(--color-surface)で線より前面にあるので、重なる部分は隠れてすき間だけ線が見える。
+   1本で「自分の高さ＋gap」伸ばすやり方だと、次の項目の方が背が高いとき（320px級の04）に
+   線が箱まで届かず途切れていた。::after＝自分の箱の中央→下端、::before＝上のすき間→自分の箱の中央
+   の2本に分けて、前後の高さが違ってもつながるようにしている */
+.flow-item:not(:last-child)::after,
+.flow-item:not(:first-child)::before {
   content: '';
   position: absolute;
   left: calc(28px);
-  top: 50%;
   width: 1px;
-  height: calc(100% + 2.5rem);
   background: var(--color-border-2);
   z-index: 0;
+}
+
+.flow-item:not(:last-child)::after {
+  top: 50%;
+  bottom: 0;
+}
+
+.flow-item:not(:first-child)::before {
+  top: calc(-1 * var(--flow-gap));
+  bottom: 50%;
 }
 
 .flow-step {
@@ -985,10 +1005,12 @@ button {
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  /* 0.95remの小さい数字だと箱の中で埋もれていた。大きめ＋高さの揃った数字で */
+  font-size: 1.2rem;
   font-weight: 700;
+  font-variant-numeric: lining-nums;
   letter-spacing: 0.05em;
-  color: var(--color-accent);
+  color: var(--color-accent-light);
   background: var(--color-surface);
   transition: border-color var(--transition), background-color var(--transition);
 }
@@ -1355,16 +1377,20 @@ br.narrow-break {
   }
 }
 
-/* 2列のままだと列が細って本文が折り返す帯。折り返す分だけ背を足す(1列に切り替わる768pxまで) */
-@media (min-width: 854px) and (max-width: 933px) {
+/* 2列のままだと列が細って本文が4行に折り返す帯。1行ぶん背を足す(1列に切り替わる768pxまで) */
+@media (min-width: 768px) and (max-width: 800px) {
   .service-item-inner {
-    min-height: 183px;
+    min-height: 167px;
   }
 }
 
-@media (min-width: 768px) and (max-width: 853px) {
-  .service-item-inner {
-    min-height: 208px;
+/* auto-phrase が効くブラウザ(Chrome系)は文節で折るぶん行が増えやすく、880pxくらいまで4行になる。
+   Safariは効かないのでこの帯でも3行のまま。そっちまで背を足すと空きが出るので分けておく */
+@supports (word-break: auto-phrase) {
+  @media (min-width: 801px) and (max-width: 880px) {
+    .service-item-inner {
+      min-height: 167px;
+    }
   }
 }
 
@@ -1380,6 +1406,14 @@ br.narrow-break {
      gapだけ詰めて本文カラムの幅を稼ぐ。 */
   .flow-item {
     gap: 1.25rem;
+  }
+
+  /* 左寄せのままだと一番長い行の右が空いて全体が左に寄って見える。
+     幅を中身（一番長い行）まで縮めて、4項目のかたまりごと画面の真ん中に置く。
+     文章自体は左揃えのまま。入りきらない細い画面では今までどおり幅いっぱい */
+  .flow-list {
+    width: fit-content;
+    max-width: 100%;
   }
 
   /* balance は行の長さを揃えにいくので、日本語だと「左右す／る」のように語の途中で割れるうえ、
@@ -1409,7 +1443,8 @@ br.narrow-break {
     grid-template-columns: 1fr;
   }
 
-  /* 1列にすると列がぐっと広がるので、410px以上ならベースの158pxで全箱そろう */
+  /* 1列の本文は mobile-break で行が決まっているので、幅で行数は変わらない。
+     410px以上はベースの高さ（3行の箱に合わせる）のまま */
 
   /* タブが6つ横に並ぶと収まらないので、折り返さず横スクロールの帯にする（この見た目を採用） */
   .service-tabs {
@@ -1444,18 +1479,11 @@ br.narrow-break {
   }
 }
 
-/* iPhone(390/393)やSE(375)級。1列でもこの幅を切ると本文が1行増える
-   （スマホで素の改行を殺した分、以前より1段ずつ低くて足りるようになった） */
+/* iPhone(390/393)やSE(375)級。3行の箱と4行の箱（配線改造・ノイズ対策）を同じ高さにそろえる。
+   320px級でも行数は同じなので、それより細い帯は分けない */
 @media (max-width: 409px) {
   .service-item-inner {
-    min-height: 183px;
-  }
-}
-
-/* 320px級の極細画面。フレット擦り合わせ／ピックアップ交換が最大まで折り返す高さに全箱を合わせる */
-@media (max-width: 324px) {
-  .service-item-inner {
-    min-height: 208px;
+    min-height: 167px;
   }
 }
 
