@@ -313,6 +313,11 @@ button {
   transform: translateY(-1px);
 }
 
+/* メニュー内のSNS。PCの横並びナビには出さない */
+.nav-sns {
+  display: none;
+}
+
 /* ハンバーガー */
 .nav-toggle {
   display: flex;
@@ -381,7 +386,49 @@ button {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
-    padding: 2.5rem var(--container-pad) calc(2.5rem + env(safe-area-inset-bottom, 0px));
+    padding: 2.5rem var(--container-pad) 0;
+  }
+
+  /* 項目の下に少し空けて、小さく横並び。増えたらliを足せば右に並ぶ */
+  .global-nav .nav-sns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.75rem;
+    margin-top: 1.5rem;
+    padding: 0 var(--container-pad) calc(2.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .global-nav.is-open .nav-sns {
+    animation: navItemIn 0.4s ease both;
+    animation-delay: 0.22s;
+  }
+
+  .nav-sns-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 2.75rem;
+    color: var(--color-text);
+    transition: color var(--transition);
+  }
+
+  /* Xのマークは白黒以外にしない。ホバーで色が変わるのは文字だけ */
+  .nav-sns-icon {
+    display: flex;
+    color: var(--color-white);
+  }
+
+  .nav-sns-name {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+  }
+
+  .nav-sns-link:hover,
+  .nav-sns-link:focus-visible {
+    color: var(--color-accent);
   }
 
   .global-nav.is-open .nav-list > li {
@@ -440,7 +487,8 @@ button {
 
 @media (prefers-reduced-motion: reduce) {
   .global-nav.is-open,
-  .global-nav.is-open .nav-list > li {
+  .global-nav.is-open .nav-list > li,
+  .global-nav.is-open .nav-sns {
     animation: none;
   }
 }
@@ -1367,12 +1415,21 @@ br.mobile-break {
 
 /* 360px未満の細い画面だけ足す改行。ご依頼の流れの本文は1行15〜16字あって、
    この幅を切ると「を」「も」が1字だけ次の行に落ちる */
-br.narrow-break {
+br.narrow-break,
+br.pickup-narrow-break {
   display: none;
 }
 
 @media (max-width: 359px) {
   br.narrow-break {
+    display: inline;
+  }
+}
+
+/* ピックアップ交換の1行目（19字）は331pxあれば1行に入る。359pxで切ると340px台（Foldのカバー画面など）まで
+   「サウンドキャラクターを」だけの短い行になるので、こっちは340px未満でだけ割る */
+@media (max-width: 339px) {
+  br.pickup-narrow-break {
     display: inline;
   }
 }
@@ -1479,8 +1536,8 @@ br.narrow-break {
   }
 }
 
-/* iPhone(390/393)やSE(375)級。3行の箱と4行の箱（配線改造・ノイズ対策）を同じ高さにそろえる。
-   320px級でも行数は同じなので、それより細い帯は分けない */
+/* iPhone(390/393)やSE(375)級。3行の箱と4行の箱（配線改造・ピックアップ交換・ノイズ対策）を同じ高さにそろえる。
+   339px以下はピックアップ交換も5行になるが、フレット擦り合わせ（5行）と同じ高さなので帯は分けない */
 @media (max-width: 409px) {
   .service-item-inner {
     min-height: 167px;
