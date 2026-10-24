@@ -389,13 +389,16 @@ button {
     padding: 2.5rem var(--container-pad) 0;
   }
 
-  /* 項目の下に少し空けて、小さく横並び。増えたらliを足せば右に並ぶ */
+  /* 項目の下に少し空けて、マークだけ横並び。増えたらliを足せば右に並ぶ */
   .global-nav .nav-sns {
+    --nav-sns-mark: 24px;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.25rem 1.75rem;
+    gap: 0.25rem 0.75rem;
     margin-top: 1.5rem;
     padding: 0 var(--container-pad) calc(2.5rem + env(safe-area-inset-bottom, 0px));
+    /* 押せる範囲（44px四方）の余白ぶん左を詰めて、マークの左端を TOP の頭にそろえる */
+    padding-left: calc(var(--container-pad) - (2.75rem - var(--nav-sns-mark)) / 2);
   }
 
   .global-nav.is-open .nav-sns {
@@ -404,31 +407,28 @@ button {
   }
 
   .nav-sns-link {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 0.6rem;
-    min-height: 2.75rem;
-    color: var(--color-text);
-    transition: color var(--transition);
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
   }
 
-  /* Xのマークは白黒以外にしない。ホバーで色が変わるのは文字だけ */
+  /* Xのマークは白黒以外にしない。ホバー・フォーカスは色を変えずに少し薄くするだけ */
   .nav-sns-icon {
     display: flex;
     color: var(--color-white);
+    transition: opacity var(--transition);
   }
 
-  .nav-sns-name {
-    font-family: var(--font-display);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    line-height: 1.4;
+  .nav-sns-icon svg {
+    width: var(--nav-sns-mark);
+    height: auto;
   }
 
-  .nav-sns-link:hover,
-  .nav-sns-link:focus-visible {
-    color: var(--color-accent);
+  .nav-sns-link:hover .nav-sns-icon,
+  .nav-sns-link:focus-visible .nav-sns-icon {
+    opacity: 0.6;
   }
 
   .global-nav.is-open .nav-list > li {
