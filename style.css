@@ -426,9 +426,9 @@ button {
     height: auto;
   }
 
-  /* 緑の四角は線だけのXより大きく見えるので、少し小さくしてつり合わせる */
+  /* 大きさはXのマークの見えている高さ（24px）と同じにする。四角の重さで小さくしない */
   .nav-sns-icon--line svg {
-    width: calc(var(--nav-sns-mark) - 2px);
+    height: var(--nav-sns-mark);
   }
 
   .nav-sns-link:hover .nav-sns-icon,
