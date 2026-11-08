@@ -6,8 +6,8 @@
   <title>Final Sound Design | 高円寺駅北口徒歩15分のギターリペア・ベースリペア＆カスタマイズ</title>
   <meta name="description" content="Final Sound Designは、高円寺駅北口から徒歩15分（中野区大和町）のギターリペア・ベースリペアとカスタマイズの工房です。弦高・ネック調整やフレット擦り合わせから、施工後のメンテナンスのご相談まで。あなたの楽器を最高の状態へ。">
   <link rel="canonical" href="https://finalsounddesign.com/">
-  <link rel="icon" href="image/logo-square.png" type="image/png">
-  <link rel="apple-touch-icon" href="image/logo-square.png">
+  <link rel="icon" href="image/favicon-96x96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="image/apple-touch-icon.png">
 
   <!-- OGP -->
   <meta property="og:title" content="Final Sound Design | 高円寺駅北口徒歩15分のギターリペア・ベースリペア＆カスタマイズ">
@@ -32,7 +32,7 @@
     "description": "高円寺駅北口から徒歩15分にある、ギタリスト・ベーシストのためのプレミアムリペア＆カスタマイズ工房です。",
     "url": "https://finalsounddesign.com/",
     "image": [
-      "https://finalsounddesign.com/image/%E3%80%90%E6%9C%80%E9%87%8D%E8%A6%81%E3%80%91%E3%83%9B%E3%83%BC%E3%83%A0%E7%94%BB%E5%83%8F.jpg",
+      "https://finalsounddesign.com/image/hero-guitar-repair-workshop-koenji.jpg",
       "https://finalsounddesign.com/image/logo-square.png"
     ],
     "logo": "https://finalsounddesign.com/image/logo-square.png",
@@ -88,16 +88,16 @@
   </script>
 
 
-  <!-- Preload header logo -->
-  <link rel="preload" href="image/Web用横長ロゴ.png" as="image">
+  <!-- ヘッダーのロゴも先読み -->
+  <link rel="preload" href="image/final-sound-design-logo.webp" as="image" type="image/webp">
 
   <!-- ヒーロー背景の静止画。最初に目に入るLCP要素なので先読みしておく -->
-  <link rel="preload" href="image/【最重要】ホーム画像.jpg" as="image" fetchpriority="high">
+  <link rel="preload" href="image/hero-guitar-repair-workshop-koenji-1706.webp" as="image" type="image/webp" imagesrcset="image/hero-guitar-repair-workshop-koenji-800.webp 800w, image/hero-guitar-repair-workshop-koenji-1280.webp 1280w, image/hero-guitar-repair-workshop-koenji-1706.webp 1706w" imagesizes="(min-aspect-ratio: 16/9) 100vw, 178vh" fetchpriority="high">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css?v=938e9896">
 </head>
@@ -106,7 +106,10 @@
   <header class="site-header" role="banner">
     <div class="header-inner container">
       <a href="#top" class="logo-link" aria-label="Final Sound Design トップへ">
-        <img src="image/Web用横長ロゴ.png" alt="Final Sound Design" width="192" height="64" class="logo-img">
+        <picture>
+          <source srcset="image/final-sound-design-logo.webp" type="image/webp">
+          <img src="image/final-sound-design-logo.png" alt="Final Sound Design" width="192" height="64" class="logo-img">
+        </picture>
       </a>
       <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-nav">
         <span class="hamburger-bar"></span>
@@ -148,7 +151,11 @@
 
         <!-- 今は静止画（リペア工房の作業台）を背景に敷いている。ページ最上部＝LCP要素なので head で先読み済み -->
         <img
-          src="image/【最重要】ホーム画像.jpg"
+          src="image/hero-guitar-repair-workshop-koenji-1706.webp"
+          srcset="image/hero-guitar-repair-workshop-koenji-800.webp 800w, image/hero-guitar-repair-workshop-koenji-1280.webp 1280w, image/hero-guitar-repair-workshop-koenji-1706.webp 1706w"
+          sizes="(min-aspect-ratio: 16/9) 100vw, 178vh"
+          width="1706"
+          height="960"
           alt="Final Sound Designのリペア工房。作業台に置かれたエレキギターと、壁に並ぶリペア用の工具"
           class="hero-image"
           fetchpriority="high"
@@ -861,7 +868,10 @@
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner container">
       <div class="footer-logo">
-        <img src="image/logo-square.png" alt="Final Sound Design" width="120" height="42" loading="lazy" decoding="async">
+        <picture>
+          <source srcset="image/final-sound-design-logo-square-360.webp" type="image/webp">
+          <img src="image/final-sound-design-logo-square-360.png" alt="Final Sound Design" width="120" height="42" loading="lazy" decoding="async">
+        </picture>
       </div>
       <nav class="footer-nav" aria-label="フッターナビゲーション">
         <ul class="footer-nav-list">
