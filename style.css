@@ -426,9 +426,10 @@ button {
     height: auto;
   }
 
-  /* 大きさはXのマークの見えている高さ（24px）と同じにする。四角の重さで小さくしない */
+  /* 角丸の四角は線だけのXより小さく見えるので、見た目でそろう30pxにしている */
   .nav-sns-icon--line svg {
-    height: var(--nav-sns-mark);
+    width: 30px;
+    height: 30px;
   }
 
   .nav-sns-link:hover .nav-sns-icon,
