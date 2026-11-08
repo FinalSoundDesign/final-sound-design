@@ -1087,10 +1087,10 @@ button {
   line-height: 1.8;
 }
 
-/* LINE公式アカウントの告知。下の予約フォームも同じ黒地なので、境目に線を引いておく */
+/* LINE公式アカウントの告知。背景は上から 薄い黒→黒 を交互にしているので、
+   ここから下はひとつずつ色が入れ替わる（線は薄い黒の側の上下にだけ引く） */
 .line-oa {
   background: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
 }
 
 .line-oa .section-header {
@@ -1135,7 +1135,9 @@ button {
 
 /* Reservation form */
 .reserve {
-  background: var(--color-bg);
+  background: var(--color-bg-2);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .reserve-form {
@@ -1167,111 +1169,81 @@ button {
   color: var(--color-error);
 }
 
+/* ラベルと入力欄を1つのまとまりに見せる。ラベル〜欄は詰めて、項目どうしは大きくあける */
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  margin-bottom: 0;
-  position: relative;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.form-group:last-of-type {
-  border-bottom: none;
-  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-label {
-  font-family: var(--font-display);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  color: var(--color-white);
+  margin-bottom: 0.5rem;
 }
 
 .required {
   color: var(--color-accent);
-  margin-left: 0.1rem;
-  opacity: 0.7;
+  margin-left: 0.15rem;
 }
 
 .optional {
-  color: var(--color-text-muted);
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0 0.4em;
+  border: 1px solid var(--color-border-2);
+  font-size: 0.72rem;
   font-weight: 400;
-  margin-left: 0.4rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  vertical-align: 0.1em;
 }
 
+/* どこに打てばいいか一目で分かるように、欄は枠で囲んだ箱にする。
+   文字は16px未満にするとiOSが勝手にズームするので1remから下げない */
 .form-input {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--color-border-2);
-  padding: 0.6rem 0;
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  background-color: var(--color-bg-3);
+  border: 1px solid var(--color-border-2);
+  border-radius: 0;
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: 1rem;
-  width: 100%;
-  transition: border-color var(--transition);
+  line-height: 1.5;
+  transition: border-color var(--transition), background-color var(--transition);
   appearance: none;
   -webkit-appearance: none;
-  position: relative;
-  z-index: 1;
 }
 
 .form-input::placeholder {
-  color: var(--color-text-faint);
+  color: #666666;
   font-size: 0.88rem;
 }
 
 .form-input:hover {
-  border-color: var(--color-text-muted);
+  border-color: #4a4a4a;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: transparent;
-}
-
-/* フォーカス時のゴールドアンダーライン */
-.form-group::after {
-  content: '';
-  position: absolute;
-  bottom: 2rem;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--color-accent);
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-}
-
-.form-group:last-of-type::after {
-  bottom: 1.5rem;
-}
-
-.form-group:focus-within::after {
-  width: 100%;
+  border-color: var(--color-accent);
+  background-color: var(--color-surface);
 }
 
 .form-input.is-invalid {
   border-color: var(--color-error);
 }
 
-.form-group:has(.is-invalid)::after {
-  background: var(--color-error);
-  width: 100%;
-}
-
 .form-select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 0.25rem center;
-  padding-right: 2rem;
+  background-position: right 0.9rem center;
+  padding-right: 2.5rem;
   cursor: pointer;
-  /* Safariだとselectだけ勝手に角が5px丸くなる。下線の端が丸まって見えるので直角に戻す */
-  border-radius: 0;
 }
 
 .form-select option {
@@ -1281,26 +1253,12 @@ button {
 
 .form-textarea {
   resize: none;
-  min-height: 100px;
+  min-height: 140px;
   line-height: 1.7;
 }
 
-/* 補足文がある欄は、下から伸びる線だと補足文の下に出て欄の中の文字に見える。
-   入力欄そのものの下線を金色にする */
-.form-group--hint::after {
-  content: none;
-}
-
-.form-group--hint .form-input:focus {
-  border-color: var(--color-accent);
-}
-
-.form-group--hint .form-input.is-invalid {
-  border-color: var(--color-error);
-}
-
 .form-hint {
-  margin-top: 0.5rem;
+  margin-top: 0.45rem;
   font-size: 0.75rem;
   line-height: 1.6;
   color: var(--color-text-muted);
@@ -1310,14 +1268,12 @@ button {
   font-size: 0.75rem;
   color: var(--color-error);
   min-height: 1em;
-  margin-top: 0.4rem;
+  margin-top: 0.35rem;
   letter-spacing: 0.02em;
 }
 
 .form-group--checkbox {
-  border-bottom: none;
-  padding-bottom: 1rem;
-  padding-top: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .checkbox-label {
@@ -2070,8 +2026,7 @@ br.pickup-narrow-break {
 
 /* 事業者情報 */
 .business-info {
-  background: var(--color-bg-2);
-  border-top: 1px solid var(--color-border);
+  background: var(--color-bg);
 }
 
 .info-list {
@@ -2119,9 +2074,9 @@ br.pickup-narrow-break {
   opacity: 0.8;
 }
 
-/* SNS。事業者情報(bg-2)の下なので地は黒に戻す */
+/* SNS。事業者情報(黒)の下なので薄い黒。下のフッターは黒 */
 .sns {
-  background: var(--color-bg);
+  background: var(--color-bg-2);
   border-top: 1px solid var(--color-border);
 }
 
