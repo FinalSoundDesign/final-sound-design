@@ -178,6 +178,7 @@ function initScrollReveal() {
     '.flow-item',
     '.info-row',
     '.sns-item',
+    '.line-oa-body > *',
     '.reserve-form'
   ].join(', '));
 
@@ -273,6 +274,7 @@ function initReservationForm() {
   const FIELDS = [
     { id: 'name',         msg: 'お名前を入力してください。' },
     { id: 'email',        msg: 'メールアドレスを入力してください。', extra: validateEmail },
+    { id: 'phone',        msg: '電話番号を入力してください。', extra: validatePhone },
     { id: 'instrument',   msg: '楽器の種類を選択してください。' },
     { id: 'service-type', msg: 'サービスを選択してください。' },
     { id: 'message',      msg: '楽器の状態・ご要望を入力してください。' },
@@ -283,6 +285,14 @@ function initReservationForm() {
 
   function validateEmail(val) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) ? '' : '正しいメールアドレスを入力してください。';
+  }
+
+  // 書き方は人それぞれなので、数字・ハイフン・＋・空白・カッコなら通す（全角も可）。
+  // 桁は 090-xxxx-xxxx の11桁や +81 付きまで入るくらいのゆるさで見るだけ
+  function validatePhone(val) {
+    if (!/^[0-9０-９+＋\-－ー‐−\s()（）]+$/.test(val)) return '電話番号は数字とハイフンで入力してください。';
+    const digits = val.replace(/[^0-9０-９]/g, '').length;
+    return digits >= 10 && digits <= 15 ? '' : '正しい電話番号を入力してください。';
   }
 
   function setFieldError(id, message) {

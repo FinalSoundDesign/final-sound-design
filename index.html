@@ -37,7 +37,8 @@
     ],
     "logo": "https://finalsounddesign.com/image/logo-square.png",
     "sameAs": [
-      "https://x.com/FinalSoundWS"
+      "https://x.com/FinalSoundWS",
+      "https://lin.ee/Zl3L15E"
     ],
     "telephone": "090-2679-6442",
     "address": {
@@ -98,7 +99,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=a5da00ad">
+  <link rel="stylesheet" href="style.css?v=ea715b2a">
 </head>
 <body>
 
@@ -119,12 +120,19 @@
           <li><a href="#service" class="nav-link">SERVICE</a></li>
           <li><a href="#reserve" class="nav-link nav-link--cta">RESERVATION</a></li>
         </ul>
-        <!-- スマホのメニューを開いたときだけ出る。SNSを足すときもURLを変えるときも、ページ下の #sns と head の sameAs と3か所そろえる -->
+        <!-- スマホのメニューを開いたときだけ出る。SNSを足すときもURLを変えるときも、ページ下の #sns と head の sameAs と3か所そろえる（LINEは #line の告知も） -->
         <ul class="nav-sns" aria-label="SNS">
           <li class="nav-sns-item">
             <a href="https://x.com/FinalSoundWS" class="nav-sns-link" target="_blank" rel="noopener noreferrer" aria-label="X（旧Twitter）（Final Sound Design のアカウント）を新しいタブで開く">
               <span class="nav-sns-icon" aria-hidden="true">
                 <svg width="24" height="24" viewBox="0 0 1200 1227" fill="currentColor" aria-hidden="true" focusable="false"><path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.163 519.284ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.828Z"/></svg>
+              </span>
+            </a>
+          </li>
+          <li class="nav-sns-item">
+            <a href="https://lin.ee/Zl3L15E" class="nav-sns-link" target="_blank" rel="noopener noreferrer" aria-label="LINE公式アカウント">
+              <span class="nav-sns-icon" aria-hidden="true">
+                <svg width="24" height="23" viewBox="165 180 670 640" fill="currentColor" fill-rule="evenodd" aria-hidden="true" focusable="false"><path d="M440 714C468 718 478 732 474 758L466 798C463 818 478 822 500 810C610 750 765 645 804 560A333 268 0 1 0 440 714ZM276 380H313V502H383V540H276ZM402 380H440V540H402ZM461 380H495L563 471V380H601V540H563V533L499 447V540H461ZM622 380H730V418H660V441H728V479H660V502H730V540H622Z"/></svg>
               </span>
             </a>
           </li>
@@ -595,6 +603,22 @@
       </div>
     </section>
 
+    <!-- ここのURLを変えるときは #sns・sameAs・.nav-sns もいっしょに -->
+    <section class="line-oa section" id="line" aria-labelledby="line-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">LINE</span>
+          <h2 id="line-heading" class="section-title">Final Sound Designが<br class="mobile-break">LINE公式アカウントに<br class="mobile-break">登場！</h2>
+        </div>
+        <div class="line-oa-body">
+          <img src="image/line-official-account-final-sound-design-240.png" alt="Final Sound Design LINE公式アカウント" width="88" height="88" loading="lazy" decoding="async" class="line-oa-logo">
+          <p class="line-oa-desc">お得な情報を受け取るには、<br class="mobile-break">以下のリンクから<br class="mobile-break">友だち追加してください。</p>
+          <p class="line-oa-offer">LINE追加で工賃10%off...!!!</p>
+          <a href="https://lin.ee/Zl3L15E" class="btn btn-primary line-oa-link" target="_blank" rel="noopener" aria-label="追加はこちらから（LINE公式アカウントを新しいタブで開く）">追加はこちらから</a>
+        </div>
+      </div>
+    </section>
+
     <section class="reserve section" id="reserve" aria-labelledby="reserve-heading">
       <div class="container">
         <div class="section-header">
@@ -622,7 +646,7 @@
             <span id="name-error" class="form-error" role="alert" aria-live="polite"></span>
           </div>
 
-          <div class="form-group">
+          <div class="form-group form-group--hint">
             <label for="email" class="form-label">メールアドレス <span class="required" aria-label="必須">*</span></label>
             <input
               type="email"
@@ -633,9 +657,27 @@
               autocomplete="email"
               required
               aria-required="true"
-              aria-describedby="email-error"
+              aria-describedby="email-hint email-error"
             >
+            <p id="email-hint" class="form-hint">ご連絡のつくアドレスをご入力ください。</p>
             <span id="email-error" class="form-error" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">電話番号 <span class="required" aria-label="必須">*</span></label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              class="form-input"
+              placeholder="090-1234-5678"
+              autocomplete="tel"
+              inputmode="tel"
+              required
+              aria-required="true"
+              aria-describedby="phone-error"
+            >
+            <span id="phone-error" class="form-error" role="alert" aria-live="polite"></span>
           </div>
 
           <div class="form-group">
@@ -775,7 +817,7 @@
       </div>
     </section>
 
-    <!-- SNSは今後増える予定。li を足せば並ぶ。SNSを足すときもURLを変えるときも、ここ・head の JSON-LD の sameAs・スマホメニューの .nav-sns の3か所をそろえる -->
+    <!-- li を足せば並ぶ。SNSを足すときもURLを変えるときも、ここ・head の JSON-LD の sameAs・スマホメニューの .nav-sns の3か所をそろえる（LINEは #line の告知も） -->
     <section class="sns section" id="sns" aria-labelledby="sns-heading">
       <div class="container">
         <div class="section-header">
@@ -791,6 +833,19 @@
               </span>
               <span class="sns-text">
                 <span class="sns-name">X（旧Twitter）</span>
+              </span>
+              <span class="sns-arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false"><path d="M4 10L10 4M5 4h5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg>
+              </span>
+            </a>
+          </li>
+          <li class="sns-item">
+            <a href="https://lin.ee/Zl3L15E" class="sns-link" target="_blank" rel="noopener noreferrer" aria-label="LINE公式アカウント（Final Sound Design）を新しいタブで開く">
+              <span class="sns-icon" aria-hidden="true">
+                <svg width="22" height="21" viewBox="165 180 670 640" fill="currentColor" fill-rule="evenodd" aria-hidden="true" focusable="false"><path d="M440 714C468 718 478 732 474 758L466 798C463 818 478 822 500 810C610 750 765 645 804 560A333 268 0 1 0 440 714ZM276 380H313V502H383V540H276ZM402 380H440V540H402ZM461 380H495L563 471V380H601V540H563V533L499 447V540H461ZM622 380H730V418H660V441H728V479H660V502H730V540H622Z"/></svg>
+              </span>
+              <span class="sns-text">
+                <span class="sns-name">LINE公式アカウント</span>
               </span>
               <span class="sns-arrow" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false"><path d="M4 10L10 4M5 4h5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg>
@@ -822,6 +877,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=29072678"></script>
+  <script src="script.js?v=197b40f4"></script>
 </body>
 </html>

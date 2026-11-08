@@ -1087,6 +1087,52 @@ button {
   line-height: 1.8;
 }
 
+/* LINE公式アカウントの告知。下の予約フォームも同じ黒地なので、境目に線を引いておく */
+.line-oa {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.line-oa .section-header {
+  margin-bottom: 2.5rem;
+}
+
+.line-oa-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 560px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.line-oa-logo {
+  width: 88px;
+  height: 88px;
+  margin-bottom: 1.75rem;
+}
+
+.line-oa-desc {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--color-text);
+}
+
+.line-oa-offer {
+  margin-top: 1.25rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+}
+
+.line-oa-link {
+  margin-top: 2rem;
+  min-height: 2.75rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
 /* Reservation form */
 .reserve {
   background: var(--color-bg);
@@ -1237,6 +1283,27 @@ button {
   resize: none;
   min-height: 100px;
   line-height: 1.7;
+}
+
+/* 補足文がある欄は、下から伸びる線だと補足文の下に出て欄の中の文字に見える。
+   入力欄そのものの下線を金色にする */
+.form-group--hint::after {
+  content: none;
+}
+
+.form-group--hint .form-input:focus {
+  border-color: var(--color-accent);
+}
+
+.form-group--hint .form-input.is-invalid {
+  border-color: var(--color-error);
+}
+
+.form-hint {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
 }
 
 .form-error {
