@@ -631,6 +631,28 @@ button {
   margin-bottom: 2rem;
 }
 
+/* h1 は屋号と業種の2行。見た目は中の2つの span で決める */
+.hero-heading {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+.hero-brand-name,
+.hero-brand-desc {
+  display: block;
+}
+
+.hero-brand-desc {
+  margin-top: 0.85rem;
+  font-size: clamp(0.78rem, 2.6vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--color-accent-light);
+  animation: fadeInDown 1s 0.15s ease both;
+}
+
 .hero-brand-name {
   font-family: 'Cormorant Garamond', serif;
   /* モバイルでも1行に収める（折り返さない）。字間を詰めつつ vw で縮小 */
